@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milk Diary Dashboard</title>
+  <link rel="stylesheet" href="company.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  </head>
+  <body>
+        <header>
+        <div class="logo">
+          <img src="images/LOGON.png" height="100" width="300" alt="Company Logo" />
+          <div class="search-bar">
+            <input type="search" placeholder="Search dairy products..." />
+            <i id="serch" class="fa fa-search"></i>
+          </div>
+    
+        </div>
+        
+        <!-- <div class="company-name"> <span class="blue" >Astrolite</span>  <span class="red" >Tech</span> <span class="black" >Solutions</span> </div> -->
+        <div class="profile">
+          <div class="notification-container">
+            <div class="notification-icon" id="notification-btn">
+              <!-- <img src="https://cdn-icons-png.flaticon.com/512/1827/1827314.png" alt="Notification Bell" /> -->
+              <i id="fa_bell" class="fa fa-bell" aria-hidden="true"></i>
+              <span class="notification-dot" id="notification-dot"></span>
+            </div>
+            <div class="notification-dropdown" id="notification-dropdown">
+              <h4>Notifications</h4>
+              <ul>
+                <li>
+                  <img src="https://cdn-icons-png.flaticon.com/512/1828/1828665.png" alt="Order Icon" />
+                  <div>
+                    <strong>New order received</strong>
+                    <p>Your dairy order has been confirmed</p>
+                    <span>24 min ago</span>
+                  </div>
+                </li>
+                <li>
+                  <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Message Icon" />
+                  <div>
+                    <strong>New inquiry</strong>
+                    <p>Customer question about product details</p>
+                    <span>1 hr ago</span>
+                  </div>
+                </li>
+                <li>
+                  <img src="https://cdn-icons-png.flaticon.com/512/1150/1150645.png" alt="Review Icon" />
+                  <div>
+                    <strong>New review posted</strong>
+                    <p>See the latest customer feedback</p>
+                    <span>4 days ago</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+         
+         <img class="img_wh" src="images/logo1.jpeg" alt="Profile Picture" />
+         <div class="span_U"> <span id="usernames">sahithi</span></div>
+          <div class="menu-toggle" id="menu-toggle">
+          <i class="fa fa-bars"></i>
+        </div>
+        </div>
+      </header>
+    
+      <!-- Content Wrapper -->
+      <div class="dashboard-container">
+          <div class="aside-class">
+              <ul>
+                  <li id="index-link"><a href="index.html">Dashboard</a></li>
+                  <li id="products-link"> <a href="products.html"> Products</a></li>
+                  <li id="Orders-link"> <a href="order.html">Orders</a></li>
+                  <li id="client-link"> <a href="clients.html">Clients</a></li>
+                  <li id="Sales-link"> <a href="sales.html">Sales</a></li>
+                  <li id="analysis-link"> <a href="productanalysis.html">Product Analysis</a></li>
+                  <li id="Customer-Review"> <a href="customerreview.html">Customer Review</a></li>
+                  <li id="Employee-List"> <a href="employee.html">Employee List</a></li>
+                  <li id="Marketing"> <a href="marketing.html">Marketing</a></li>
+                  <li id="Customer-Feedback"> <a href="customerfeedback.html">Customer Feedback</a></li>
+                  <li id="back-to-login" class="logout"> <a href="login.html">Logout</a></li>
+              </ul>
+          </div>
+        
+        <main>
+
+      <div class="wid-io">
+        <div class="hj-name">
+          <h1 class="month-sal">Monthly Sales</h1>
+        </div>
+        <div class="wid-oip">
+          <div class="super-as">
+            <div class="super-ss">
+                <div class="u-super">
+                    <div class="O-super-O">
+                      <div class="sup-fr">
+                        <p class="green-cricle"></p>
+                      </div>
+                      <div class="O-super">
+                        <h2 class="hu-tf">Total Revenue</h2>
+                        <div class="ju-d">
+                          <p class="rupe-s"><i class="fa fa-rupee"></i> 20,00,000 </p>
+                          <p class="rupe-cha-green"> 2.5%  <i class="fa fa-arrow-up"></i> </p>
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="O-super-R">
+                      <div class="sup-fr">
+                        <p class="red-cricle"></p>
+                      </div>
+                      <div class="O-super">
+                        <h2 class="hu-tf">Invoices</h2>
+                        <div class="ju-d">
+                          <p class="rupe-s"> 2146 </p>
+                          <p class="rupe-cha-red"> - 3.5%  <i class="fa fa-arrow-down"></i> </p>
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="O-super-G">
+                      <div class="sup-fr">
+                        <p class="blue-cricle"></p>
+                      </div>
+                      <div class="O-super">
+                        <h2 class="hu-tf"><i id="user-uj" class="fa fa-user" aria-hidden="true"></i>Clients</h2>
+                        <div class="ju-d">
+                          <p class="rupe-s"> 1423 </p>
+                          <p class="rupe-cha-blue"> 4.5%  <i class="fa fa-arrow-up"></i> </p>
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="O-super-Bl">
+                      <div class="sup-fr">
+                        <p class="br-cricle"></p>
+                      </div>
+                      <div class="O-super">
+                        <h2 class="hu-tf"><i id="user-uj" class="fa fa-gear"></i>Services</h2>
+                        <div class="ju-d">
+                          <p class="rupe-s"> 78 </p>
+                          <p class="rupe-cha-br"> 1.9%  <i class="fa fa-arrow-down"></i> </p>
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="O-super-OR">
+                      <div class="sup-fr">
+                        <p class="or-cricle"></p>
+                      </div>
+                      <div class="O-super">
+                        <h2 class="hu-tf"><i id="user-uj" class="fa fa-bar-chart" aria-hidden="true"></i></i>Analysis</h2>
+                        <div class="ju-d">
+                          <p class="rupe-s"> 122 </p>
+                          <p class="rupe-cha-OR"> 3.9%  <i class="fa fa-arrow-up"></i> </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="O-super-N">
+                      <div class="sup-fr">
+                        <p class="N-cricle"></p>
+                      </div>
+                      <div class="O-super">
+                        <h2 class="hu-tf"><i id="user-u" class="fa fa-bar-chart" aria-hidden="true"></i></i>Sales</h2>
+                        <div class="ju-d">
+                          <p class="rupe-s"> 3000 </p>
+                          <p class="rupe-cha-N"> 2.9%  <i class="fa fa-arrow-up"></i> </p>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+          </div>
+
+
+          <div class="Graph-lo">
+             <div class="graph-jy">
+              <div class="ht-graph">
+                <h1 class="graph-li">Recent Sales</h1>
+              </div>
+              <div class="graph-jyi">
+                <div class="grap-uyj">
+                    
+                <div class="graph-ujy">
+                  <div class="Sales_u-monthly">
+                    <canvas id="salesmonthss" ></canvas>
+                </div>
+                <div class="don-t">
+                    <canvas id="salesPieGr" ></canvas>
+                </div>
+                
+                <script>
+                  const salesMonthlyData = {
+                      "2025": [1130, 1200, 150, null, null, null, null, null, null, null, null, null]
+                  };
+                
+                  // Pie chart data (Sales data by product)
+                  const salepieData = {
+                      "2025": [500, 200, 150, 120, 300, 250] // Example sales data in L/Kg for each product
+                  };
+                
+                  // Colors for pie chart
+                  const colorsPie = [
+                      'orange', 
+                      '#ddd', 
+                      'skyblue', 
+                      'green', 
+                      'gold', 
+                      'pink'
+                  ];
+                
+                  // Get the canvas context for monthly sales chart
+                  const ctxr = document.getElementById('salesmonthss').getContext('2d');
+                  let salesMonthChart = new Chart(ctxr, {
+                    type: 'line',
+                    data: {
+                      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                      datasets: [{
+                        label: 'Recent Sales',
+                        data: salesMonthlyData["2025"],
+                        borderColor: 'blue',
+                        backgroundColor: '#ccc',
+                        tension: 0.1
+                      }]
+                    },
+                    options: {
+                      responsive: true,
+                      plugins: {
+                        legend: {
+                          position: 'top',
+                          labels: {
+                            font: {
+                              size: 18,
+                              family: 'Arial',
+                              weight: 'bold',
+                              style: 'italic'
+                            },
+                            color: '#000',
+                            padding: 20,
+                            boxWidth: 20
+                          }
+                        },
+                        tooltip: {
+                          callbacks: {
+                            title: function(tooltipItem) {
+                              return tooltipItem[0].label;
+                            },
+                            label: function(tooltipItem) {
+                              const value = tooltipItem.raw;
+                              return `Sales: ${value}`;
+                            }
+                          }
+                        }
+                      },
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                  });
+                
+                  // Get the canvas context for pie chart
+                  const ctxs = document.getElementById('salesPieGr').getContext('2d');
+                  let salesPieChart = new Chart(ctxs, {
+                    type: 'pie',
+                    data: {
+                      labels: ['paneer', 'milk', 'buttermilk', 'ghee', 'curd', 'cheese'],
+                      datasets: [{
+                        label: 'Sales Data By Quantity (L/Kg)',
+                        data: salepieData["2025"], 
+                        backgroundColor: colorsPie
+                      }]
+                    },
+                    options: {
+                      responsive: true,
+                      plugins: {
+                        legend: {
+                          position: 'bottom', 
+                          labels: {
+                            font: {
+                              size: 18,
+                              family: 'Arial',
+                              weight: 'bold',
+                              style: 'italic'
+                            },
+                            color: '#000',
+                            padding: 20,
+                            boxWidth: 20
+                          }
+                        },
+                        tooltip: {
+                          callbacks: {
+                            title: function(tooltipItem) {
+                              return tooltipItem[0].label;
+                            },
+                            label: function(tooltipItem) {
+                              const value = tooltipItem.raw;
+                              return `Sales: ${value}`;
+                            }
+                          }
+                        },
+                        beforeDraw: function(chart) {
+                          const ctx = chart.chart.ctx;
+                          const width = chart.chart.width;
+                          const height = chart.chart.height;
+                          ctx.save();
+                          ctx.font = 'bold 20px Arial';
+                          ctx.textAlign = 'center';
+                          ctx.fillStyle = 'black';
+                          ctx.fillText('Sales by Product', width / 2, height + 20); 
+                          ctx.restore();
+                        }
+                      }
+                    }
+                  });
+                </script>
+                
+                </div>
+               </div>
+               </div> 
+             </div>
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+
+        
+      </div>
+
+        <!-- <section class="supplier_H">
+            <h1 class="Tech_So"> <span class="AS">Astrolite</span> <span class="Tech">Tech</span> <span class="Sol">Solutions</span> </h1>
+         <p class="Lead_t" > 
+            We are a leading technology solutions provider specializing in software development, cloud computing, and IT consulting services.
+        </p>
+         </section>
+
+        <section class="suppliers">
+          <h3>Recent Collections</h3>
+          <div class="supplier-list">
+            <div class="supplier">
+              <img src="Fresh milk.jpeg" alt="Fresh Milk" />
+              <p>Fresh Milk</p>
+            </div>
+            <div class="supplier">
+              <img src="organic milk.jpeg" alt="Organic Milk" />
+              <p>Organic Milk</p>
+            </div>
+            <div class="supplier">
+              <img src="Flavoured milk.jpeg" alt="Flavored Milk" />
+              <p>Flavored Milk</p>
+            </div>
+            <div class="supplier">
+              <img src="Cheese.jpeg" alt="Cheese" />
+              <p>Cheese</p>
+            </div>
+          </div>
+        </section> -->
+
+        <!-- <section class="employee-history">
+          <h3>Recent Dairy Reviews</h3>
+          <ul>
+            <li>"The fresh milk tastes amazing and is super fresh!" - John Doe</li>
+          </ul>
+        </section> -->
+      </main>
+  </div>
+
+  <script>
+    document.getElementById('notification-btn').addEventListener('click', function () {
+        document.getElementById('notification-dropdown').classList.toggle('show');
+    });
+
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.querySelector('.aside-class').classList.toggle('active');
+    });
+
+    const loggedInUser = localStorage.getItem('username');
+    document.getElementById('username').textContent = `${loggedInUser}`;
+
+    const handleLogout = () => {
+        localStorage.clear();
+        window.location.href = "login.html";
+    };
+
+    const handleNavigateToPage = (page) => {
+        window.location.href = `${page}.html`;
+    };
+
+    document.getElementById('index-link').addEventListener('click', () => handleNavigateToPage('index'));
+    document.getElementById('products-link').addEventListener('click', () => handleNavigateToPage('products'));
+    document.getElementById('Orders-link').addEventListener('click', () => handleNavigateToPage('order'));
+    document.getElementById('client-link').addEventListener('click', () => handleNavigateToPage('clients'));
+    document.getElementById('Sales-link').addEventListener('click', () => handleNavigateToPage('sales'));
+    document.getElementById('analysis-link').addEventListener('click', () => handleNavigateToPage('productanalysis'));
+    document.getElementById('Customer-Review').addEventListener('click', () => handleNavigateToPage('customerreview'));
+    document.getElementById('Employee-List').addEventListener('click', () => handleNavigateToPage('employeeList')); 
+    document.getElementById('Marketing').addEventListener('click', () => handleNavigateToPage('marketing'));
+
+    document.getElementById('back-to-login').addEventListener('click', handleLogout);
+</script>
+
+
+
+
+
+</body>
+</html>

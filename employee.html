@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milk Diary Dashboard</title>
+  <link rel="stylesheet" href="company.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  </head>
+  <body>
+    <header>
+        <div class="logo">
+          <img src="images/LOGON.png" height="100" width="300" alt="Company Logo" />
+          <div class="search-bar">
+            <input type="search" placeholder="Search dairy products..." />
+            <i id="serch" class="fa fa-search"></i>
+          </div>
+    
+        </div>
+        
+        <!-- <div class="company-name"> <span class="blue" >Astrolite</span>  <span class="red" >Tech</span> <span class="black" >Solutions</span> </div> -->
+        <div class="profile">
+          <div class="notification-container">
+            <div class="notification-icon" id="notification-btn">
+              <!-- <img src="https://cdn-icons-png.flaticon.com/512/1827/1827314.png" alt="Notification Bell" /> -->
+              <i id="fa_bell" class="fa fa-bell" aria-hidden="true"></i>
+              <span class="notification-dot" id="notification-dot"></span>
+            </div>
+            <div class="notification-dropdown" id="notification-dropdown">
+              <h4>Notifications</h4>
+              <ul>
+                <li>
+                  <img src="https://cdn-icons-png.flaticon.com/512/1828/1828665.png" alt="Order Icon" />
+                  <div>
+                    <strong>New order received</strong>
+                    <p>Your dairy order has been confirmed</p>
+                    <span>24 min ago</span>
+                  </div>
+                </li>
+                <li>
+                  <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Message Icon" />
+                  <div>
+                    <strong>New inquiry</strong>
+                    <p>Customer question about product details</p>
+                    <span>1 hr ago</span>
+                  </div>
+                </li>
+                <li>
+                  <img src="https://cdn-icons-png.flaticon.com/512/1150/1150645.png" alt="Review Icon" />
+                  <div>
+                    <strong>New review posted</strong>
+                    <p>See the latest customer feedback</p>
+                    <span>4 days ago</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+         
+         <img class="img_wh" src="images/logo1.jpeg" alt="Profile Picture" />
+         <div class="span_U"> <span id="usernames">sahithi</span></div>
+          <div class="menu-toggle" id="menu-toggle">
+          <i class="fa fa-bars"></i>
+        </div>
+        </div>
+      </header>
+    
+      <!-- Content Wrapper -->
+      <div class="dashboard-container">
+          <div class="aside-class">
+              <ul>
+                  <li id="index-link"><a href="index.html">Dashboard</a></li>
+                  <li id="products-link"> <a href="products.html"> Products</a></li>
+                  <li id="Orders-link"> <a href="order.html">Orders</a></li>
+                  <li id="client-link"> <a href="clients.html">Clients</a></li>
+                  <li id="Sales-link"> <a href="sales.html">Sales</a></li>
+                  <li id="analysis-link"> <a href="productanalysis.html">Product Analysis</a></li>
+                  <li id="Customer-Review"> <a href="customerreview.html">Customer Review</a></li>
+                  <li id="Employee-List"> <a href="employee.html">Employee List</a></li>
+                  <li id="Marketing"> <a href="marketing.html">Marketing</a></li>
+                  <li id="Customer-Feedback"> <a href="customerfeedback.html">Customer Feedback</a></li>
+                  <li id="back-to-login" class="logout"> <a href="login.html">Logout</a></li>
+              </ul>
+          </div>
+        <main>
+            <div class="container_hyu">
+                <div class="containe_ghy">
+                    <div class="Widht_plo">
+                        <div class="poli-wif">
+                            <h1 class="name_ty">Employee History</h1>
+                        </div>
+                    </div>
+               <div class="btn-cl">
+                <div class="bth_oip">
+                    <button class="juki" id="addEmployeeBtn">Add Employee</button>
+                </div>
+                <div class="Oip_ert">
+                    <input id="uisear" type="search"  placeholder="Search..." />
+                </div>
+               </div>
+            
+                <!-- Table to display employee data -->
+                <table id="employeeTable">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Mobile No</th>
+                      <th>Address</th>
+                      <th>Status</th>
+                      <th>Month</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Data will be injected here -->
+                  </tbody>
+                </table>
+            
+                <!-- Chart for employee data -->
+               <div class="canbv">
+                <div class="canb">
+                    <canvas id="employeeChart"></canvas>
+                   </div>
+               </div>
+            </div>
+            </div>
+        </main>
+    </div>
+  
+    <!-- Add/Edit Employee Modal -->
+    <div id="employeeModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Add Employee</h2>
+        <form id="employeeForm">
+          <input type="hidden" id="employeeIndex" />
+          <div class="form-group">
+            <label>Name:</label>
+            <input type="text" id="name" required />
+            <span class="error-message" id="nameError"></span>
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="email" required />
+            <span class="error-message" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label>Mobile No:</label>
+            <input type="text" id="mobile" required />
+            <span class="error-message" id="mobileError"></span>
+          </div>
+          <div class="form-group">
+            <label>Address:</label>
+            <input type="text" id="address" required />
+            <span class="error-message" id="addressError"></span>
+          </div>
+          <div class="form-group">
+            <label>Status:</label>
+            <select id="status" required>
+              <option value="">Select Status</option>
+              <option value="Present">Present</option>
+              <option value="Left">Left</option>
+            </select>
+            <span class="error-message" id="statusError"></span>
+          </div>
+          <div class="form-group">
+            <label>Month:</label>
+            <input type="month" id="month" required />
+            <span class="error-message" id="monthError"></span>
+          </div>
+          <button type="submit" id="saveBtn">Save</button>
+        </form>
+      </div>
+    </div>
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Fetch saved employee data from localStorage or initialize an empty array
+    let employeeData = JSON.parse(localStorage.getItem('employeeData')) || [];
+    
+    const modal = document.getElementById('employeeModal');
+    const addEmployeeBtn = document.getElementById('addEmployeeBtn');
+    const closeModal = document.querySelector('.close');
+    const form = document.getElementById('employeeForm');
+    const tableBody = document.querySelector('#employeeTable tbody');
+    let editingIndex = -1;
+  
+    let chartInstance = null;
+  
+    // Open modal
+    addEmployeeBtn.addEventListener('click', () => {
+      editingIndex = -1;
+      form.reset();
+      document.getElementById('modalTitle').innerText = 'Add Employee';
+      modal.style.display = 'block';
+    });
+  
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+  
+    // Add validation functions
+    function validateName(name) {
+        const nameRegex = /^[a-zA-Z]+[a-zA-Z]*$/;
+        return nameRegex.test(name);
+    }
+
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function validateMobile(mobile) {
+        const mobileRegex = /^\d{10}$/;
+        return mobileRegex.test(mobile);
+    }
+
+    function validateAddress(address) {
+        return address.trim().length > 0;
+    }
+
+    function validateStatus(status) {
+        return status !== "";
+    }
+
+    function validateMonth(month) {
+        return month !== "";
+    }
+  
+    // Save or update employee
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+  
+      // Reset all error messages
+      document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+      document.querySelectorAll('input, select').forEach(el => {
+          el.classList.remove('error', 'valid');
+      });
+  
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const mobile = document.getElementById('mobile').value;
+      const address = document.getElementById('address').value;
+      const status = document.getElementById('status').value;
+      const month = document.getElementById('month').value;
+  
+      let isValid = true;
+  
+      // Validate name
+      if (!validateName(name)) {
+          document.getElementById('nameError').textContent = 'Name should not contain spaces or end with a dot';
+          document.getElementById('name').classList.add('error');
+          isValid = false;
+      } else {
+          document.getElementById('name').classList.add('valid');
+      }
+  
+      // Validate email
+      if (!validateEmail(email)) {
+          document.getElementById('emailError').textContent = 'Please enter a valid email address';
+          document.getElementById('email').classList.add('error');
+          isValid = false;
+      } else {
+          document.getElementById('email').classList.add('valid');
+      }
+  
+      // Validate mobile
+      if (!validateMobile(mobile)) {
+          document.getElementById('mobileError').textContent = 'Please enter a valid 10-digit mobile number';
+          document.getElementById('mobile').classList.add('error');
+          isValid = false;
+      } else {
+          document.getElementById('mobile').classList.add('valid');
+      }
+  
+      // Validate address
+      if (!validateAddress(address)) {
+          document.getElementById('addressError').textContent = 'Address is required';
+          document.getElementById('address').classList.add('error');
+          isValid = false;
+      } else {
+          document.getElementById('address').classList.add('valid');
+      }
+  
+      // Validate status
+      if (!validateStatus(status)) {
+          document.getElementById('statusError').textContent = 'Please select a status';
+          document.getElementById('status').classList.add('error');
+          isValid = false;
+      } else {
+          document.getElementById('status').classList.add('valid');
+      }
+  
+      // Validate month
+      if (!validateMonth(month)) {
+          document.getElementById('monthError').textContent = 'Please select a month';
+          document.getElementById('month').classList.add('error');
+          isValid = false;
+      } else {
+          document.getElementById('month').classList.add('valid');
+      }
+  
+      if (isValid) {
+          if (editingIndex === -1) {
+              // Add new employee
+              employeeData.push({ name, email, mobile, address, status, month });
+          } else {
+              // Update existing employee
+              employeeData[editingIndex] = { name, email, mobile, address, status, month };
+          }
+  
+          // Save data to localStorage
+          localStorage.setItem('employeeData', JSON.stringify(employeeData));
+  
+          renderTable();
+          updateChart();
+          modal.style.display = 'none';
+      }
+    });
+  
+    // Add real-time validation
+    document.getElementById('name').addEventListener('input', function() {
+        if (validateName(this.value)) {
+            this.classList.remove('error');
+            this.classList.add('valid');
+            document.getElementById('nameError').textContent = '';
+        } else {
+            this.classList.remove('valid');
+            this.classList.add('error');
+            document.getElementById('nameError').textContent = 'Name should not contain spaces or end with a dot';
+        }
+    });
+
+    document.getElementById('email').addEventListener('input', function() {
+        if (validateEmail(this.value)) {
+            this.classList.remove('error');
+            this.classList.add('valid');
+            document.getElementById('emailError').textContent = '';
+        } else {
+            this.classList.remove('valid');
+            this.classList.add('error');
+            document.getElementById('emailError').textContent = 'Please enter a valid email address';
+        }
+    });
+
+    document.getElementById('mobile').addEventListener('input', function() {
+        if (validateMobile(this.value)) {
+            this.classList.remove('error');
+            this.classList.add('valid');
+            document.getElementById('mobileError').textContent = '';
+        } else {
+            this.classList.remove('valid');
+            this.classList.add('error');
+            document.getElementById('mobileError').textContent = 'Please enter a valid 10-digit mobile number';
+        }
+    });
+
+    document.getElementById('address').addEventListener('input', function() {
+        if (validateAddress(this.value)) {
+            this.classList.remove('error');
+            this.classList.add('valid');
+            document.getElementById('addressError').textContent = '';
+        } else {
+            this.classList.remove('valid');
+            this.classList.add('error');
+            document.getElementById('addressError').textContent = 'Address is required';
+        }
+    });
+
+    document.getElementById('status').addEventListener('change', function() {
+        if (validateStatus(this.value)) {
+            this.classList.remove('error');
+            this.classList.add('valid');
+            document.getElementById('statusError').textContent = '';
+        } else {
+            this.classList.remove('valid');
+            this.classList.add('error');
+            document.getElementById('statusError').textContent = 'Please select a status';
+        }
+    });
+
+    document.getElementById('month').addEventListener('change', function() {
+        if (validateMonth(this.value)) {
+            this.classList.remove('error');
+            this.classList.add('valid');
+            document.getElementById('monthError').textContent = '';
+        } else {
+            this.classList.remove('valid');
+            this.classList.add('error');
+            document.getElementById('monthError').textContent = 'Please select a month';
+        }
+    });
+  
+    // Render table
+    function renderTable() {
+      tableBody.innerHTML = '';
+      employeeData.forEach((employee, index) => {
+        const row = `
+          <tr>
+            <td>${employee.name}</td>
+            <td>${employee.email}</td>
+            <td>${employee.mobile}</td>
+            <td>${employee.address}</td>
+            <td>${employee.status}</td>
+            <td>${employee.month}</td>
+            <td>
+              <button class="edit-btn" onclick="editEmployee(${index})">Edit</button>
+              <button class="delete-btn" onclick="deleteEmployee(${index})">Delete</button>
+            </td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+    }
+  
+    // Edit employee
+    function editEmployee(index) {
+      editingIndex = index;
+      const employee = employeeData[index];
+      document.getElementById('name').value = employee.name;
+      document.getElementById('email').value = employee.email;
+      document.getElementById('mobile').value = employee.mobile;
+      document.getElementById('address').value = employee.address;
+      document.getElementById('status').value = employee.status;
+      document.getElementById('month').value = employee.month;
+      document.getElementById('modalTitle').innerText = 'Edit Employee';
+      modal.style.display = 'block';
+    }
+  
+    // Delete employee
+    function deleteEmployee(index) {
+      if (confirm('Are you sure you want to delete this employee?')) {
+        employeeData.splice(index, 1);
+        localStorage.setItem('employeeData', JSON.stringify(employeeData)); // Save updated data to localStorage
+        renderTable();
+        updateChart();
+      }
+    }
+  
+    // Update chart
+    function updateChart() {
+      const months = [...new Set(employeeData.map(emp => emp.month))].sort();
+  
+      const presentCount = months.map(month => 
+        employeeData.filter(emp => emp.month === month && emp.status === 'Present').length
+      );
+  
+      const leftCount = months.map(month => 
+        employeeData.filter(emp => emp.month === month && emp.status === 'Left').length
+      );
+  
+      if (chartInstance) {
+        chartInstance.destroy(); // Destroy previous chart before creating a new one
+      }
+  
+      const ctx = document.getElementById('employeeChart').getContext('2d');
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: months,
+          datasets: [
+            {
+              label: 'Present Employees',
+              data: presentCount,
+              backgroundColor: '#4CAF50',
+              borderWidth: 1,
+            },
+            {
+              label: 'Employees Left',
+              data: leftCount,
+              backgroundColor: '#f44336',
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'nearest',
+            intersect: false,
+            axis: 'x'
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+                min: 0,
+              },
+            },
+          },
+        },
+      });
+    }
+  
+    // Close modal on outside click
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  
+    // Initial table and chart render
+    renderTable();
+    updateChart();
+  </script>
+  <script>
+    document.getElementById('notification-btn').addEventListener('click', function () {
+        document.getElementById('notification-dropdown').classList.toggle('show');
+    });
+
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.querySelector('.aside-class').classList.toggle('active');
+    });
+
+    const loggedInUser = localStorage.getItem('username');
+    document.getElementById('username').textContent = `${loggedInUser}`;
+
+    const handleLogout = () => {
+        localStorage.clear();
+        window.location.href = "login.html";
+    };
+
+    const handleNavigateToPage = (page) => {
+        window.location.href = `${page}.html`;
+    };
+
+    document.getElementById('index-link').addEventListener('click', () => handleNavigateToPage('index'));
+    document.getElementById('products-link').addEventListener('click', () => handleNavigateToPage('products'));
+    document.getElementById('Orders-link').addEventListener('click', () => handleNavigateToPage('order'));
+    document.getElementById('client-link').addEventListener('click', () => handleNavigateToPage('clients'));
+    document.getElementById('Sales-link').addEventListener('click', () => handleNavigateToPage('sales'));
+    document.getElementById('analysis-link').addEventListener('click', () => handleNavigateToPage('productanalysis'));
+    document.getElementById('Customer-Review').addEventListener('click', () => handleNavigateToPage('customerreview'));
+    document.getElementById('Employee-List').addEventListener('click', () => handleNavigateToPage('employeeList')); 
+    document.getElementById('Marketing').addEventListener('click', () => handleNavigateToPage('marketing'));
+
+    document.getElementById('back-to-login').addEventListener('click', handleLogout);
+</script>
+  
+  <style>
+    /* Layout Styles */
+    .dashboard-container {
+        margin-top: 80px;
+        height: 100vh;
+        position: relative;
+    }
+
+    .aside-class {
+        position: fixed;
+        left: -280px;
+        top: 80px;
+        width: 280px;
+        height: calc(100vh - 80px);
+        background: #ffffff;
+        transition: left 0.3s ease;
+        z-index: 999;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .aside-class.active {
+        left: 0;
+    }
+
+    main {
+        position: relative;
+        transition: all 0.3s ease;
+        padding: 20px;
+    }
+
+    .container_hyu {
+        width: 100%;
+        margin: auto;
+        transition: all 0.3s ease;
+        padding: 0 10px;
+    }
+
+
+    /* Component Styles */
+    h1 {
+        text-align: center;
+    }
+    
+    button.juki {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        transition: background 0.3s ease;
+        border: 1px solid #fff;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    button.juki:hover {
+        background-color: #fff;
+        color: #007bff;
+        border: 1px solid #007bff;
+    }
+    
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th {
+        font-size: 18px;
+        background-color: #f2f2f2;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+    
+    td {
+        font-size: 16px;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+    
+    td .edit-btn, td .delete-btn {
+        padding: 5px 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        margin-right: 5px;
+    }
+    
+    .edit-btn {
+        background-color: #f0ad4e;
+        color: white;
+    }
+    
+    .edit-btn:hover {
+        background-color: #ec971f;
+    }
+    
+    .delete-btn {
+        background-color: #d9534f;
+        color: white;
+    }
+    
+    .delete-btn:hover {
+        background-color: #c9302c;
+    }
+    
+    /* Modal Styling */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 99999999999999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        background-color: rgba(0,0,0,0.4);
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+    
+    .modal-content {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        width: 40%;
+        max-width: 40%;
+        margin: 20px auto; /* Changed from 10px to 20px for better spacing */
+        padding-right: 40px;
+        position: relative;
+        overflow-y: auto; /* Enable scrolling within modal content */
+    }
+    
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+    input {
+        font-size: 16px;
+        width: 100%;
+        padding: 10px;
+        margin: 3px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    button {
+        padding: 10px;
+        margin: 3px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    select {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+    }
+    
+    .btn-cl {
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    #employeeTable {
+        margin-bottom: 60px;
+    }
+    
+    div.canbv {
+        padding: 20px 30px;
+        background-color: #fff;
+        box-shadow: 2px 10px 5px 4px rgba(0,0,0,0.4);
+        margin-bottom: 100px;
+        border-radius: 10px;
+    }
+    
+    div.containe_ghy {
+        width: 90%;
+        margin: auto;
+    }
+    
+    #modalTitle {
+        text-align: center;
+        font-size: 25px;
+    }
+    
+    label {
+        font-size: 18px;
+    }
+    
+    div.Widht_plo {
+        width: 100%;
+        margin: auto;
+    }
+    
+    div.poli-wif {
+        width: 100%;
+        margin: auto;
+        background-color: rgb(151,179,174);
+        border-radius: 5px;
+        margin-bottom: 20px;
+        margin-top: 5%;
+    }
+    
+    h1.name_ty {
+        color: #fff;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 25px;
+    }
+    
+    #serch {
+        margin-top: 16px;
+    }
+    
+    #uisear {
+        width: 100%;
+    }
+
+    /* Form Validation Styles */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .error-message {
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: 5px;
+        display: block;
+    }
+
+    input.error, select.error {
+        border-color: #dc3545;
+    }
+
+    input.valid, select.valid {
+        border-color: #28a745;
+    }
+
+    /* Add this CSS to fix the canvas height */
+    .canb {
+        height: 400px;
+        position: relative;
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,84 @@
+div.order-list{
+    width: 100%;
+    /* margin: auto; */
+  }
+  div.order-item{
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+  }
+  .list-item{
+    /* border: 1px solid #000; */
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-top: 300px;
+    cursor: pointer;
+  }
+  .list-item:hover{
+    box-shadow: 3px 2px 3px 1px #ccc;
+  }
+  
+  .table-order{
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    border-radius: 10px;
+    border-spacing: 20px;
+  }
+  th{
+    text-align: center;
+    justify-content: center;
+    padding: 20px 15px;
+  }
+  td {
+    text-align: left;
+    padding: 20px 15px;
+  }
+  button.dev-e-green{
+    background-color: #28a745;
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+  .dev-e-brown{
+    background-color: brown;
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+  .dev-e-red{
+    background-color: #dc3545;
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+  
+  #order-ids{
+    font-size: 16px;
+    color: #007bff;
+    margin-right: 10px;
+  }
+  .order-id{
+    font-size: 25px;
+    color: #000;
+    display: flex;
+    align-items: center;
+  }
+  .order-date{
+    font-size: 15px;
+  }
+  .order-item{
+    font-size: 15px;
+  }
+  .order-Delivered{
+    font-size: 15px;
+  }
+  .total-item{
+    font-size: 16px;
+  }

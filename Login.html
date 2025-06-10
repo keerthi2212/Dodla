@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <!-- <div class="cube-d">
+        <div class="run-ku">
+            <div class="cube">
+              <div class="face front"></div>
+              <div class="face back"></div>
+              <div class="face left"></div>
+              <div class="face right"></div>
+              <div class="face top"></div>
+              <div class="face bottom"></div>
+            </div>
+          </div>
+    </div> -->
+
+        <div class="cube-d">
+            <div class="run-hex">
+                <div class="cube_hex">
+
+                </div>
+              </div>
+            </div>
+   <div class="login-wrapper">       
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input id="form-email" type="email" name="email" required placeholder="Enter Email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input id="form-password" type="password" name="password" required pattern=".{6,}" title="Password must be at least 6 characters long" placeholder="Enter Password">
+                </div>
+
+                <!-- Centered Forgot Password Link -->
+                <div class="forgot-password">
+                    <a class="frog" href="forgotpassword.html">Forgot Password?</a>  
+                </div>
+
+                <button id="submit-button" type="submit" class="btn">Login</button>
+            </form>
+            <div class="signup-link">Don't have an account? <a href="signup.html">Sign Up</a></div>
+        </div>
+        <div class="image-box">
+             <img class="img-a" src="images/loginimg-preview.png" alt="Login Illustration"> 
+        </div>
+    </div>
+    </div>
+
+    <!-- <div class="h-k">
+        <div class="cube-d-c">
+            <div class="run-ku-k">
+                <div class="cube-k">
+                  <div class="face-k front-k"></div>
+                  <div class="face-k back-k"></div>
+                  <div class="face-k left-k"></div>
+                  <div class="face-k right-k"></div>
+                  <div class="face-k top-k"></div>
+                  <div class="face-k bottom-k"></div>
+                </div>
+              </div>
+        </div>
+    </div> -->
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault()
+            const email = document.getElementById('form-email').value;
+            const password = document.getElementById('form-password').value;
+            const loginpassword = localStorage.getItem('password');
+            const loginemail = localStorage.getItem('email');
+            if(loginemail!==email || loginpassword !== password){
+                alert("Invalid credentials");
+                return;
+            }
+            window.location.href = "company.html";
+        });
+    </script>
+</body>
+</html>

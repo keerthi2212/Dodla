@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milk Diary Dashboard</title>
+  <link rel="stylesheet" href="company.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  </head>
+  <body>
+    <header>
+        <div class="logo">
+          <img src="images/LOGON.png" height="100" width="300" alt="Company Logo" />
+          <div class="search-bar">
+            <input type="search" placeholder="Search dairy products..." />
+            <i id="serch" class="fa fa-search"></i>
+          </div>
+    
+        </div>
+        
+        <!-- <div class="company-name"> <span class="blue" >Astrolite</span>  <span class="red" >Tech</span> <span class="black" >Solutions</span> </div> -->
+        <div class="profile">
+          <div class="notification-container">
+            <div class="notification-icon" id="notification-btn">
+              <!-- <img src="https://cdn-icons-png.flaticon.com/512/1827/1827314.png" alt="Notification Bell" /> -->
+              <i id="fa_bell" class="fa fa-bell" aria-hidden="true"></i>
+              <span class="notification-dot" id="notification-dot"></span>
+            </div>
+            <div class="notification-dropdown" id="notification-dropdown">
+              <h4>Notifications</h4>
+              <ul>
+                <li>
+                  <img src="https://cdn-icons-png.flaticon.com/512/1828/1828665.png" alt="Order Icon" />
+                  <div>
+                    <strong>New order received</strong>
+                    <p>Your dairy order has been confirmed</p>
+                    <span>24 min ago</span>
+                  </div>
+                </li>
+                <li>
+                  <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Message Icon" />
+                  <div>
+                    <strong>New inquiry</strong>
+                    <p>Customer question about product details</p>
+                    <span>1 hr ago</span>
+                  </div>
+                </li>
+                <li>
+                  <img src="https://cdn-icons-png.flaticon.com/512/1150/1150645.png" alt="Review Icon" />
+                  <div>
+                    <strong>New review posted</strong>
+                    <p>See the latest customer feedback</p>
+                    <span>4 days ago</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+         
+         <img class="img_wh" src="images/logo1.jpeg" alt="Profile Picture" />
+         <div class="span_U"> <span id="usernames">sahithi</span></div>
+          <div class="menu-toggle" id="menu-toggle">
+          <i class="fa fa-bars"></i>
+        </div>
+        </div>
+      </header>
+    
+      <!-- Content Wrapper -->
+      <div class="dashboard-container">
+          <div class="aside-class">
+              <ul>
+                  <li id="index-link"><a href="index.html">Dashboard</a></li>
+                  <li id="products-link"> <a href="products.html"> Products</a></li>
+                  <li id="Orders-link"> <a href="order.html">Orders</a></li>
+                  <li id="client-link"> <a href="clients.html">Clients</a></li>
+                  <li id="Sales-link"> <a href="sales.html">Sales</a></li>
+                  <li id="analysis-link"> <a href="productanalysis.html">Product Analysis</a></li>
+                  <li id="Customer-Review"> <a href="customerreview.html">Customer Review</a></li>
+                  <li id="Employee-List"> <a href="employee.html">Employee List</a></li>
+                  <li id="Marketing"> <a href="marketing.html">Marketing</a></li>
+                  <li id="Customer-Feedback"> <a href="customerfeedback.html">Customer Feedback</a></li>
+                  <li id="back-to-login" class="logout"> <a href="login.html">Logout</a></li>
+              </ul>
+          </div>
+
+        <style>
+            div.width-set{
+                width: 100%;
+                margin: auto;
+            }
+            div.style-iop{
+                width: 100%;
+                margin: auto;
+            }
+            .contai-sect1 {
+                /* background: #fff; */
+                padding: 20px;
+                border-radius: 8px;
+                /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+            }
+            div.mark_uip{
+                display: grid;
+                grid-template-columns: auto auto ;
+                gap: 30px;
+            }
+            .contai-sect2 {
+                width: 100%;
+                /* margin-bottom: 20px; */
+                padding: 15px;
+                border-radius: 5px;
+                background: #fff;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                border: 1px solid rgb(151, 179, 174);
+                padding: 12px 24px;
+                transition: all 0.3s ease-in-out;
+            }
+            .contai-sect2:hover{
+                box-shadow: 0px 0px 10px rgb(151, 179, 174);
+                transform: scale(1.03);
+            }
+            div.ing_uie{
+                width: 100%;
+                margin: auto;
+                background-color: rgb(151, 179, 174);
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            h2.inv_mana{
+                color: #fff;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                font-size: 25px;
+            }
+            h3.pro_dis{
+                font-size: 22px;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            p.create-mana{
+                font-size: 18px;
+                line-height: 30px;
+                margin-bottom: 10px;
+            }
+            button.graph_btn-uy  {
+                background: rgb(151, 179, 174);
+                color: white;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                font-size: 16px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: 600;
+            }
+            button.graph_btn-uy:hover {
+                background: rgba(0, 0, 0, 0.7);
+                transform: scale(1.1);
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            }
+            .modal-box {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                overflow-y: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .modal-content-box {
+                margin-top: 10%;
+                background-color: #fff;
+                padding: 20px;
+                width: 90%;
+                max-height: 88vh;
+                overflow-y: auto;
+                border-radius: 8px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                text-align: center;
+            }
+            .close-btn {
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .chart-box {
+                display: grid;
+                grid-template-columns: auto;
+            }
+            canvas {
+                max-width: 100%;
+                max-height: 400px;
+            }
+            div.img_flex{
+                display: flex;
+                gap: 10px;
+            }
+            img.text_imgty{
+              width: 200px;
+              height: 150px;
+              border-radius: 5px;
+            }
+            div.flex_div_but{
+                display: flex;
+                justify-content: flex-end;
+            }
+            h3.char-ui{
+                font-size: 30px;
+                margin-bottom: 30px;
+            }
+            canvas#promotions-box-lineChart{
+                margin-bottom: 30px;
+            }
+
+            /* Add container styles to match products page */
+            .width-set {
+                width: 100%;
+                margin: auto;
+                transition: all 0.3s ease;
+                padding: 0 10px;
+            }
+
+        </style>
+    </head>
+    <body>
+     <main>
+        <div class="width-set">
+            <div class="style-iop">
+                <div class="contai-sect1">
+                    <div class="ing_uie">
+                        <h2 class="inv_mana">Marketing & Promotions</h2>
+                    </div>
+
+                    <div class="marking_tyu">
+                        <div class="mark_uip">
+                            <div class="contai-sect2" id="promotions">
+                                <div class="img_flex">
+                                    <div class="image_ropm">
+                                       <img class="text_imgty" src="images/bestcoupon.jpeg" />
+                                    </div>
+                                    <div class="matter-prop">
+                                        <h3 class="pro_dis" >Promotions & Discounts</h3>
+                                        <p class="create-mana" >Create and manage special offers and discount programs.</p>
+                                        <div class="flex_div_but">
+                                            <button class="graph_btn-uy" onclick="openModal('promotions-box')">View More</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div class="contai-sect2" id="affiliates">
+                                <div class="img_flex">
+                                    <div class="image_ropm">
+                                       <img class="text_imgty" src="images/affiliate.jpeg" />
+                                    </div>
+                                    <div class="matter-prop">
+                                        <h3 class="pro_dis" >Affiliate Marketing</h3>
+                                        <p class="create-mana" >Expand your reach through affiliate partnerships.</p>
+                                        <div class="flex_div_but">
+                                            <button  class="graph_btn-uy"  onclick="openModal('affiliates-box')">View More</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div class="contai-sect2" id="social">
+                                <div class="img_flex">
+                                    <div class="image_ropm">
+                                       <img class="text_imgty" src="images/social.jpeg" />
+                                    </div>
+                                    <div class="matter-prop">
+                                        <h3 class="pro_dis" >Social Media Marketing</h3>
+                                        <p class="create-mana" >Boost engagement through social media promotions.</p>
+                                        <div class="flex_div_but">
+                                            <button class="graph_btn-uy"  onclick="openModal('social-box')">View More</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    
+                            <div class="contai-sect2" id="email">
+                                <div class="img_flex">
+                                    <div class="image_ropm">
+                                       <img class="text_imgty" src="images/a.jpeg" />
+                                    </div>
+                                    <div class="matter-prop">
+                                        <h3 class="pro_dis">Email Marketing</h3>
+                                        <p class="create-mana" >Engage customers through personalized email campaigns.</p>
+                                        <div class="flex_div_but">
+                                            <button class="graph_btn-uy"  onclick="openModal('email-box')">View More</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div class="contai-sect2" id="ads">
+                                <div class="img_flex">
+                                    <div class="image_ropm">
+                                       <img class="text_imgty" src="images/paid.jpeg" />
+                                    </div>
+                                    <div class="matter-prop">
+                                        <h3 class="pro_dis" >Paid Advertisements</h3>
+                                        <p class="create-mana" >Increase visibility with targeted ad placements.</p>
+                                        <div class="flex_div_but">
+                                            <button class="graph_btn-uy"  onclick="openModal('ads-box')">View More</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contai-sect2" id="ads">
+                                <div class="img_flex">
+                                    <div class="image_ropm">
+                                       <img class="text_imgty" src="images/seo.jpeg" />
+                                    </div>
+                                    <div class="matter-prop">
+                                        <h3 class="pro_dis" >SEO Optimization</h3>
+                                        <p class="create-mana" >Enhance your search engine rankings with effective SEO strategies.</p>
+                                        <div class="flex_div_but">
+                                            <button class="graph_btn-uy"  onclick="openModal('seo-box')">View More</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            
+                <div id="modals-container"></div>
+            </div>
+        </div>
+    </main>
+    
+        <script>
+            function openModal(modalId) {
+                let modal = document.getElementById(modalId);
+                if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = modalId;
+                    modal.className = 'modal-box';
+                    modal.innerHTML = `
+                        <div class="modal-content-box">
+                            <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
+                            <h3 class="char-ui" >${modalId.replace('-box', '').replace('-', ' ').toUpperCase()}</h3>
+                            <div class="chart-box">
+                                <canvas id="${modalId}-lineChart"></canvas>
+                                <canvas id="${modalId}-doughnutChart"></canvas>
+                            </div>
+                        </div>`;
+                    document.getElementById('modals-container').appendChild(modal);
+                }
+                modal.style.display = 'flex';
+                setTimeout(() => drawCharts(modalId), 500);
+            }
+    
+            function closeModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+    
+            function drawCharts(modalId) {
+                setTimeout(() => {
+                    const lineChartCanvas = document.getElementById(`${modalId}-lineChart`);
+                    const doughnutChartCanvas = document.getElementById(`${modalId}-doughnutChart`);
+                    
+                    if (!lineChartCanvas || !doughnutChartCanvas) return;
+                    
+                    new Chart(lineChartCanvas, {
+                        type: 'line',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            datasets: [{
+                                label: 'Monthly Performance',
+                                data: Array.from({length: 12}, () => Math.floor(Math.random() * 100) + 20),
+                                borderColor: 'blue',
+                                borderWidth: 2,
+                                fill: false
+                            }]
+                        }
+                    });
+    
+                    new Chart(doughnutChartCanvas, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Organic', 'Paid', 'Referral', 'Direct'],
+                            datasets: [{
+                                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100],
+                                backgroundColor: ['#ADD8E6', '#FFB6C1', '#98FB98', '#FFD700']
+                            }]
+                        }
+                    });
+                }, 500);
+            }
+        </script>
+    
+    
+    <script>
+        document.getElementById('notification-btn').addEventListener('click', function () {
+            document.getElementById('notification-dropdown').classList.toggle('show');
+        });
+    
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.querySelector('.aside-class').classList.toggle('active');
+        });
+    
+        const loggedInUser = localStorage.getItem('username');
+        document.getElementById('username').textContent = `${loggedInUser}`;
+    
+        const handleLogout = () => {
+            localStorage.clear();
+            window.location.href = "login.html";
+        };
+    
+        const handleNavigateToPage = (page) => {
+            window.location.href = `${page}.html`;
+        };
+    
+         document.getElementById('index-link').addEventListener('click', () => handleNavigateToPage('index'));
+        document.getElementById('products-link').addEventListener('click', () => handleNavigateToPage('products'));
+        document.getElementById('Orders-link').addEventListener('click', () => handleNavigateToPage('order'));
+        document.getElementById('client-link').addEventListener('click', () => handleNavigateToPage('clients'));
+        document.getElementById('Sales-link').addEventListener('click', () => handleNavigateToPage('sales'));
+        document.getElementById('analysis-link').addEventListener('click', () => handleNavigateToPage('productanalysis'));
+        document.getElementById('Customer-Review').addEventListener('click', () => handleNavigateToPage('customerreview'));
+        document.getElementById('Employee-List').addEventListener('click', () => handleNavigateToPage('employeeList')); 
+        document.getElementById('Marketing').addEventListener('click', () => handleNavigateToPage('marketing'));
+    
+        document.getElementById('back-to-login').addEventListener('click', handleLogout);
+    </script>
+  
+</body>
+</html>

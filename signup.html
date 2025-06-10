@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+<div class="container-sign">
+    <div class="container">
+        <!-- Signup Illustration Section -->
+        <div class="image-section">
+            <img class="image-signup"src="images/an-signup-preview.png" alt="Signup Illustration">
+        </div>
+        
+        <!-- Form Section -->
+        <div class="form-section">
+            <h2>Signup</h2>
+            <form id="signup-form" method="get">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="name" required />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" name="password" required />
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirm-password" required />
+                </div>
+                <button type="submit" class="btn-sign">Register</button>
+            </form>
+            <div class="signin-link">Already have an account? <a href="login.html">Sign In</a></div>
+        </div>
+    </div>
+
+</div> 
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const username = document.querySelector('input[name="name"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Username Validation Rules
+            const usernameRegex = /^(?![.\s])([A-Za-z]+[.]?(\s[A-Za-z]+){0,4})?$/;
+            const periodCount = (username.match(/[.]/g) || []).length;
+            const spaceCount = (username.match(/ /g) || []).length;
+
+            if (!usernameRegex.test(username) || periodCount > 2 || spaceCount > 4 || username.includes(" .") || username.includes(". ")) {
+                alert("Invalid username.\nRules:\n- Cannot start or end with a space or period.\n- No consecutive spaces allowed.\n- Max 4 spaces allowed.\n- Max 2 periods allowed.\n- Periods and spaces cannot be adjacent.");
+                return;
+            }
+
+            // Email Validation
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
+            if (!emailRegex.test(email)) {
+                alert("Invalid email format. The domain must contain at least 2 alphabetic characters after the dot (e.g., .com, .org).");
+                return;
+            }
+
+            if(password.length < 6){
+                alert("Password must be at least 6 characters.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            localStorage.setItem('email', email);
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+            localStorage.setItem('link', 'https://www.example.com');
+
+            alert("Signup successful!");
+            window.location.href="login.html";
+        });
+    </script>
+
+</body>
+</html>

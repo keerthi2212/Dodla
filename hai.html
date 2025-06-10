@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milk Diary Dashboard</title>
+  <link rel="stylesheet" href="company.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="ATS Wallpaper.jpeg" height="100" width="300" alt="Company Logo" />
+        <div class="search-bar">
+          <input type="search" placeholder="Search dairy products..." />
+          <i id="serch" class="fa fa-search"></i>
+        </div>
+  
+      </div>
+      
+      <!-- <div class="company-name"> <span class="blue" >Astrolite</span>  <span class="red" >Tech</span> <span class="black" >Solutions</span> </div> -->
+      <div class="profile">
+        <div class="notification-container">
+          <div class="notification-icon" id="notification-btn">
+            <!-- <img src="https://cdn-icons-png.flaticon.com/512/1827/1827314.png" alt="Notification Bell" /> -->
+            <i id="fa_bell" class="fa fa-bell" aria-hidden="true"></i>
+            <span class="notification-dot" id="notification-dot"></span>
+          </div>
+          <div class="notification-dropdown" id="notification-dropdown">
+            <h4>Notifications</h4>
+            <ul>
+              <li>
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828665.png" alt="Order Icon" />
+                <div>
+                  <strong>New order received</strong>
+                  <p>Your dairy order has been confirmed</p>
+                  <span>24 min ago</span>
+                </div>
+              </li>
+              <li>
+                <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Message Icon" />
+                <div>
+                  <strong>New inquiry</strong>
+                  <p>Customer question about product details</p>
+                  <span>1 hr ago</span>
+                </div>
+              </li>
+              <li>
+                <img src="https://cdn-icons-png.flaticon.com/512/1150/1150645.png" alt="Review Icon" />
+                <div>
+                  <strong>New review posted</strong>
+                  <p>See the latest customer feedback</p>
+                  <span>4 days ago</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+       
+       <img class="img_wh" src="WhatsApp Image 2025-02-19 at 18.00.09.jpeg" alt="Profile Picture" />
+       <div class="span_U"> <span id="username"></span></div>
+        <div class="menu-toggle" id="menu-toggle">
+        <i class="fa fa-bars"></i>
+      </div>
+      </div>
+    </header>
+  
+    <!-- Content Wrapper -->
+      <div class="dashboard-container">
+        <aside class="aside-class">
+          <ul>
+            <li id="dashboard-link">Dashboard</li>
+            <li id="products-link">Products</li>
+            <li id="Orders-link">Orders</li>
+            <li id="client-link">Clients</li>
+            <li id="Sales-link">Sales</li>
+            <li id="analysis-link">Product Analysis</li>
+            <li id="Customer-Review">Customer Review</li>
+            <li id="Employee-List">Employee List</li>
+            <li id="Marketing">Marketing</li>
+            <li id="back-to-login" class="logout">Logout</li>
+        </ul>
+        </aside>
+        
+        <main>
+    <style>
+            div.hedf {
+                background-color: #0a4d68;
+                color: white;
+                padding: 1rem 2rem;
+                text-align: center;
+              }
+          .proop{
+            font-size: 35px;
+            margin-bottom: 10px;
+          }
+          .mlk{
+            font-size: 20px;
+          }
+              .dashboard {
+                padding: 2rem;
+              }
+          
+              .cards-in {
+                display: flex;
+                gap: 2rem;
+                flex-wrap: wrap;
+                margin-bottom: 2rem;
+              }
+          
+              .card-in {
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                padding: 1.5rem;
+                flex: 1 1 200px;
+                text-align: center;
+              }
+          
+              .card-in h3 {
+                margin: 0;
+                color: #0a4d68;
+              }
+          
+              .card-in p {
+                font-size: 1.2rem;
+                font-weight: bold;
+              }
+          
+              .section {
+                margin-bottom: 2rem;
+              }
+          
+              .section h2 {
+                color: #0a4d68;
+              }
+          
+              canvas {
+                background: white;
+                border-radius: 10px;
+                padding: 1rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+              }
+          
+              table {
+                width: 100%;
+                border-collapse: collapse;
+                background: white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                border-radius: 10px;
+                overflow: hidden;
+              }
+          
+              th, td {
+                padding: 1rem;
+                text-align: left;
+                border-bottom: 1px solid #eee;
+              }
+          
+              th {
+                background-color: #0a4d68;
+                color: white;
+              }
+          
+              .form-area {
+                margin-top: 1rem;
+                display: none;
+                background-color: white;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 2rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                border-radius: 10px;
+                z-index: 9999;
+              }
+          
+              .form-area input {
+                margin: 0.3rem;
+                padding: 0.5rem;
+                width: 15%;
+              }
+          
+              .form-area button {
+                padding: 0.5rem 1rem;
+                background: #0a4d68;
+                color: white;
+                border: none;
+                cursor: pointer;
+              }
+          
+              .add-btn {
+                background: #0a4d68;
+                color: white;
+                padding: 0.5rem 1rem;
+                border: none;
+                cursor: pointer;
+                margin-bottom: 1rem;
+                border-radius: 5px;
+              }
+          
+              .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 9998;
+                display: none;
+              }
+               div.gra{
+                width: 100%;
+                margin: auto;
+               }
+              div.bar_graph{
+                display: flex;
+                justify-content: center;
+                gap: 0px;
+                width: 100%;
+                margin: auto;
+                gap: 40px;
+              }
+              div.wi-w{
+                width: 100%;
+                margin: auto;
+                overflow: hidden;
+              }
+              /* div.wd-u{
+                width: 90%;
+                margin: auto;
+              } */
+              #mixedChart,#bubbleChart{
+                width: 100% !important;
+                height: 450px !important;
+              }
+            </style>
+          </head>
+          <body>
+          
+            <div class="wi-w">
+              <div class="wd-u">
+                <div class="hedf">
+                    <h1 class="proop" >Procurement Analysis</h1>
+                    <p class="mlk" >Milk Collection Insights & Supplier Performance</p>
+                  </div>
+                
+                  <div class="dashboard">
+                    <!-- Overview Cards -->
+                    <div class="cards-in">
+                      <div class="card-in">
+                        <h3>Total Milk Procured</h3>
+                        <p>15,200 Liters</p>
+                      </div>
+                      <div class="card-in">
+                        <h3>Average Fat %</h3>
+                        <p>4.2%</p>
+                      </div>
+                      <div class="card-in">
+                        <h3>Top Contributing Region</h3>
+                        <p>North Valley</p>
+                      </div>
+                      <div class="card-in">
+                        <h3>Rejection Rate</h3>
+                        <p>2.5%</p>
+                      </div>
+                    </div>
+                    
+                    <div class="gra">
+                        <div class="bar_graph">
+                            <!-- Mixed Chart -->
+                            <div class="section">
+                              <h2>Milk Quantity & Fat% (Mixed Chart)</h2>
+                              <canvas id="mixedChart" ></canvas>
+                            </div>
+                        
+                            <!-- Bubble Chart -->
+                            <div class="section">
+                              <h2>Supplier Quality Overview (Bubble Chart)</h2>
+                              <canvas id="bubbleChart" ></canvas>
+                            </div>
+                          </div>
+                    </div>
+                
+                    <!-- Supplier Table -->
+                    <div class="section">
+                      <h2>Supplier Performance</h2>
+                
+                      <button class="add-btn" onclick="toggleForm()">Add Supplier Entry</button>
+                
+                      <div class="form-area" id="formArea">
+                        <input type="text" id="name" placeholder="Farmer Name" />
+                        <input type="text" id="region" placeholder="Region" />
+                        <input type="number" id="liters" placeholder="Liters" />
+                        <input type="number" step="0.1" id="fat" placeholder="Avg. Fat %" />
+                        <input type="number" step="0.1" id="issues" placeholder="Quality Issues %" />
+                        <button onclick="addSupplier()">Add</button>
+                      </div>
+                
+                      <table id="supplierTable">
+                        <thead>
+                          <tr>
+                            <th>Farmer Name</th>
+                            <th>Region</th>
+                            <th>Liters Supplied</th>
+                            <th>Avg. Fat %</th>
+                            <th>Quality Issues</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Ram Singh</td>
+                            <td>East Farm</td>
+                            <td>820</td>
+                            <td>4.1%</td>
+                            <td>0%</td>
+                          </tr>
+                          <tr>
+                            <td>Anjali Patil</td>
+                            <td>North Valley</td>
+                            <td>1200</td>
+                            <td>4.4%</td>
+                            <td>1%</td>
+                          </tr>
+                          <tr>
+                            <td>Dev Yadav</td>
+                            <td>Green Hills</td>
+                            <td>670</td>
+                            <td>3.9%</td>
+                            <td>3%</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          
+            <div class="overlay" id="overlay" onclick="closeForm()"></div>
+          
+            <script>
+                // Mixed Chart (Milk + Fat %)
+                const mixedCtx = document.getElementById('mixedChart').getContext('2d');
+                new Chart(mixedCtx, {
+                  data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                      {
+                        type: 'bar',
+                        label: 'Milk Collected (L)',
+                        data: [2100, 2300, 2000, 2500, 2200, 2600, 2500],
+                        backgroundColor: '#0a4d68'
+                      },
+                      {
+                        type: 'line',
+                        label: 'Total Fat %',
+                        data: [4.1, 4.3, 4.2, 4.0, 4.2, 4.4, 4.3],
+                        borderColor: '#f39c12',
+                        backgroundColor: '#f39c12',
+                        yAxisID: 'y1'
+                      }
+                    ]
+                  },
+                  options: {
+                    responsive: true,
+                    plugins: {
+                      legend: {
+                        position: 'bottom'
+                      }
+                    },
+                    scales: {
+                      x: {
+                        title: { display: true, text: 'Days of the Week' },
+                        ticks: { display: true }
+                      },
+                      y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Liters' }
+                      },
+                      y1: {
+                        position: 'right',
+                        beginAtZero: true,
+                        grid: { drawOnChartArea: false },
+                        title: { display: true, text: 'Fat %' }
+                      }
+                    }
+                  }
+                });
+              
+                const suppliers = [
+    { name: 'Ram Singh', liters: 820, color: 'rgba(54, 162, 235, 0.6)' },
+    { name: 'Anjali Patil', liters: 1200, color: 'rgba(255, 99, 132, 0.6)' },
+    { name: 'Dev Yadav', liters: 670, color: 'rgba(255, 206, 86, 0.6)' },
+    { name: 'Sita Sharma', liters: 1000, color: 'rgba(75, 192, 192, 0.6)' },
+    { name: 'Arjun Joshi', liters: 950, color: 'rgba(153, 102, 255, 0.6)' },
+    { name: 'Kiran Desai', liters: 1100, color: 'rgba(255, 159, 64, 0.6)' }
+  ];
+
+  // Pie Chart (Supplier Contribution)
+  const pieCtx = document.getElementById('bubbleChart').getContext('2d'); // using same canvas
+  new Chart(pieCtx, {
+    type: 'pie',
+    data: {
+      labels: suppliers.map(s => s.name),
+      datasets: [{
+        data: suppliers.map(s => s.liters),
+        backgroundColor: suppliers.map(s => s.color)
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const name = context.label;
+              const value = context.raw;
+              return `${name}: ${value} Liters`;
+            }
+          }
+        }
+      }
+    }
+  });
+              
+                // Show Modal Form
+                function toggleForm() {
+                  document.getElementById('formArea').style.display = 'block';
+                  document.getElementById('overlay').style.display = 'block';
+                }
+              
+                // Close Modal Form
+                function closeForm() {
+                  document.getElementById('formArea').style.display = 'none';
+                  document.getElementById('overlay').style.display = 'none';
+                }
+              
+                // Add Supplier Row
+                function addSupplier() {
+                  const name = document.getElementById('name').value;
+                  const region = document.getElementById('region').value;
+                  const liters = document.getElementById('liters').value;
+                  const fat = document.getElementById('fat').value;
+                  const issues = document.getElementById('issues').value;
+              
+                  if (name && region && liters && fat && issues) {
+                    const table = document.getElementById('supplierTable').getElementsByTagName('tbody')[0];
+                    const newRow = table.insertRow();
+              
+                    newRow.innerHTML = `
+                      <td>${name}</td>
+                      <td>${region}</td>
+                      <td>${liters}</td>
+                      <td>${fat}%</td>
+                      <td>${issues}%</td>
+                    `;
+              
+                    // Reset form
+                    document.getElementById('name').value = '';
+                    document.getElementById('region').value = '';
+                    document.getElementById('liters').value = '';
+                    document.getElementById('fat').value = '';
+                    document.getElementById('issues').value = '';
+              
+                    closeForm();
+                  }
+                }
+              </script>
+              
+              
+
+
+
+
+      </main>
+  </div>
+
+  <script>
+    document.getElementById('notification-btn').addEventListener('click', function () {
+        document.getElementById('notification-dropdown').classList.toggle('show');
+    });
+
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.querySelector('aside').classList.toggle('active');
+    });
+
+    const loggedInUser = localStorage.getItem('username');
+    document.getElementById('username').textContent = `${loggedInUser}`;
+
+    const handleLogout = () => {
+        localStorage.clear();
+        window.location.href = "login.html";
+    };
+
+    const handleNavigateToPage = (page) => {
+        window.location.href = `${page}.html`;
+    };
+
+    document.getElementById('dashboard-link').addEventListener('click', () => handleNavigateToPage('company'));
+    document.getElementById('products-link').addEventListener('click', () => handleNavigateToPage('products'));
+    document.getElementById('Orders-link').addEventListener('click', () => handleNavigateToPage('order'));
+    document.getElementById('client-link').addEventListener('click', () => handleNavigateToPage('clients'));
+    document.getElementById('Sales-link').addEventListener('click', () => handleNavigateToPage('sales'));
+    document.getElementById('analysis-link').addEventListener('click', () => handleNavigateToPage('productanalysis'));
+    document.getElementById('Customer-Review').addEventListener('click', () => handleNavigateToPage('customerreview'));
+    document.getElementById('Employee-List').addEventListener('click', () => handleNavigateToPage('employeeList')); 
+    document.getElementById('Marketing').addEventListener('click', () => handleNavigateToPage('marketing'));
+
+    document.getElementById('back-to-login').addEventListener('click', handleLogout);
+</script>
+
+
+
+
+
+</body>
+</html>
